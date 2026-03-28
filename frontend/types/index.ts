@@ -29,3 +29,11 @@ export type CropAdvice = {
   bestPractices: string[];
   bestPracticesUrdu: string[];
 };
+
+/** Successful JSON body from POST `/api/detect` (extends UI model with debug fields). */
+export type DetectApiResponse = DiseasePrediction & {
+  rawLabel: string;
+  cleanedLabel: string;
+  matchedSeedDisease: string;
+  topCandidates: Array<{ label: string; score: number; cleaned: string }>;
+};

@@ -18,21 +18,21 @@ const notoUrdu = Noto_Nastaliq_Urdu({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "AI Crop Advisory · Multi-Agent System",
-  description:
-    "Hackathon-ready crop disease guidance with Urdu support, weather context, and medicine cost estimates.",
-  applicationName: "AI Crop Advisory",
-  icons: {
-    icon: "/icon.svg",
-  },
-};
+//export const metadata: Metadata = {
+//  title: "AI Crop Advisory · Multi-Agent System",
+//  description:
+//    "Hackathon-ready crop disease guidance with Urdu support, weather context, and medicine cost estimates.",
+//  applicationName: "AI Crop Advisory",
+//  icons: {
+//    icon: "/icon.svg",
+//  },
+//};
 
-export const viewport: Viewport = {
-  themeColor: "#3f6b3c",
-  width: "device-width",
-  initialScale: 1,
-};
+//export const viewport: Viewport = {
+//  themeColor: "#3f6b3c",
+//  width: "device-width",
+//  initialScale: 1,
+//};
 
 export default function RootLayout({
   children,

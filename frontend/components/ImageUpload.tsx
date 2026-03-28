@@ -1,16 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useId, useState } from "react";
-import type { DiseasePrediction } from "@/types";
-import { simulateDiseasePrediction } from "@/lib/simulate-api";
+import type { DetectApiResponse, DiseasePrediction } from "@/types";
 import { DiseaseResultCard } from "@/components/DiseaseResultCard";
 
 /**
- * Image picker with live preview and a simulated disease prediction call.
- * No files are uploaded to a real backend in this hackathon build.
+ * Sends the selected image to `/api/detect` as multipart form-data (field name `image`).
  */
 export type ImageUploadProps = {
-  /** Optional className for layout composition. */
   className?: string;
 };
 
@@ -21,8 +18,11 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<DiseasePrediction | null>(null);
+  const [debug, setDebug] = useState<Pick<
+    DetectApiResponse,
+    "rawLabel" | "cleanedLabel" | "matchedSeedDisease"
+  > | null>(null);
 
-  // Revoke object URLs to avoid memory leaks when the file changes.
   useEffect(() => {
     if (!file) {
       setPreviewUrl(null);
@@ -36,6 +36,7 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
   const onFileChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setError(null);
     setResult(null);
+    setDebug(null);
     const next = event.target.files?.[0];
     if (!next) {
       setFile(null);
@@ -61,11 +62,39 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
     }
     setLoading(true);
     setError(null);
+    setDebug(null);
     try {
-      const prediction = await simulateDiseasePrediction();
-      setResult(prediction);
-    } catch {
-      setError("Could not complete analysis. Please try again.");
+      const body = new FormData();
+      body.append("image", file);
+
+      const res = await fetch("/api/detect", {
+        method: "POST",
+        body,
+      });
+
+      const data = (await res.json()) as DetectApiResponse & { error?: string; detail?: string };
+
+      if (!res.ok) {
+        const msg = [data.error, data.detail].filter(Boolean).join(" — ");
+        throw new Error(msg || `Request failed (${res.status})`);
+      }
+
+      setResult({
+        diseaseName: data.diseaseName,
+        confidence: data.confidence,
+        treatmentInstructions: data.treatmentInstructions,
+        spraySuggestion: data.spraySuggestion,
+        estimatedMedicineCostPkr: data.estimatedMedicineCostPkr,
+        treatmentUrdu: data.treatmentUrdu,
+      });
+      setDebug({
+        rawLabel: data.rawLabel,
+        cleanedLabel: data.cleanedLabel,
+        matchedSeedDisease: data.matchedSeedDisease,
+      });
+    } catch (e) {
+      setResult(null);
+      setError(e instanceof Error ? e.message : "Could not complete analysis.");
     } finally {
       setLoading(false);
     }
@@ -75,6 +104,7 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
     setFile(null);
     setResult(null);
     setError(null);
+    setDebug(null);
   }, []);
 
   return (
@@ -85,7 +115,8 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
       <div className="space-y-2">
         <h2 className="text-2xl font-bold text-leaf-900">Crop photo · disease check</h2>
         <p className="text-earth-700">
-          Upload a clear leaf or fruit photo. The demo uses sample JSON — wire your model URL later.
+          Upload a clear leaf or fruit photo. The server calls Hugging Face inference and maps results to local
+          medicine guidance.
         </p>
       </div>
 
@@ -132,7 +163,6 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
 
         <div className="relative flex min-h-[220px] w-full flex-1 items-center justify-center overflow-hidden rounded-2xl border border-earth-200 bg-earth-50">
           {previewUrl ? (
-            // Native <img> keeps blob previews simple without remotePatterns in next.config.
             <img
               src={previewUrl}
               alt="Selected crop preview"
@@ -145,6 +175,16 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
           )}
         </div>
       </div>
+
+      {debug ? (
+        <p className="rounded-xl bg-earth-100/80 px-4 py-3 text-xs text-earth-700">
+          <span className="font-semibold">Model label:</span> {debug.rawLabel}
+          <br />
+          <span className="font-semibold">Cleaned:</span> {debug.cleanedLabel}
+          <br />
+          <span className="font-semibold">Seed match:</span> {debug.matchedSeedDisease}
+        </p>
+      ) : null}
 
       {result ? <DiseaseResultCard prediction={result} /> : null}
     </section>
