@@ -4,7 +4,7 @@
 
 ---
 
-![AI Kisan Agent Interface](./public/readme-pic.jpg)
+![AI Kisan Agent Interface](./frontend/public/readme-pic.jpg)
 
 ---
 
@@ -36,7 +36,7 @@ The project utilizes an **Orchestrator** that manages a parallel and sequential 
 | :--- | :--- |
 | **Framework** | Next.js 14 (App Router), TypeScript |
 | **Styling** | Tailwind CSS |
-| **AI Models** | MobileNetV2 (Custom), Helsinki-NLP |
+| **AI Models** |  MobileNetV2 (Custom), Helsinki-NLP |
 | **Infrastructure** | HuggingFace Inference API, Vercel |
 | **External APIs** | OpenWeatherMap API |
 | **Package Manager** | Yarn |

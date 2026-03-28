@@ -1,6 +1,8 @@
 {
-  "temperatureC": 26,
-  "humidityPercent": 79,
-  "condition": "Partly cloudy",
-  "locationLabel": "Karachi, Sindh"
+    "locationLabel": "Faisalabad, Punjab",
+    "temperatureC": 23,
+    "humidityPercent": 65,
+    "condition": "Thunderstorms",
+    "windSpeedKmH": 18,
+    "alert": "Hailstorm risk! Harvested wheat should be covered immediately."
 }

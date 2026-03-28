@@ -39,7 +39,7 @@ export default function HomePage() {
               <h2 className="text-2xl font-bold text-earth-900">Weather & best practices</h2>
               {/* <p className="text-earth-600">.</p> */}
             </div>
-            <PDFDownloadButton weather={weather} advice={advice} />
+            <PDFDownloadButton />
           </div>
           <div className="grid gap-6 lg:grid-cols-2">
             <WeatherCard weather={weather} />
