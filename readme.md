@@ -4,7 +4,7 @@
 
 ---
 
-![AI Kisan Agent Interface](./frontend/public/readme-pic.jpg)
+![AI Kisan Agent Interface](./frontend/public/readme-pic.jpg)![AI Kisan Agent Interface](./frontend/public/2.jpg)![AI Kisan Agent Interface](./frontend/public/33.jpg)
 
 ---
 

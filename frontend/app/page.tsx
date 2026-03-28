@@ -48,7 +48,7 @@ export default function HomePage() {
         </section>
 
         <footer className="animate-fade-in rounded-2xl border border-earth-200 bg-white/80 px-4 py-6 text-center text-sm text-earth-600">
-          Built by Team @InfinityTK · BSc Computational mathematics, University of Karachi · Powered by Next.js, AI & Smart Agriculture Solutions
+          Built by Team @InfinityTK · BS Computational mathematics, University of Karachi · Powered by Next.js, AI & Smart Agriculture Solutions
         </footer>
       </main>
     </div>
