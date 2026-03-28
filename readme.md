@@ -4,7 +4,14 @@
 
 ---
 
-![AI Kisan Agent Interface](./frontend/public/readme-pic.jpg)![AI Kisan Agent Interface](./frontend/public/2.jpg)![AI Kisan Agent Interface](./frontend/public/33.jpg)
+<p align="center">
+  <img src="./frontend/public/readme-pic.jpg" alt="Farmers using technology" width="250" style="margin:10px;" />
+  <img src="./frontend/public/2.jpg" alt="Plowing the field with oxen" width="250" style="margin:10px;" />
+</p>
+
+<p align="center">
+  <img src="./frontend/public/33.jpg" alt="Harvesting wheat" width="250" style="margin:10px;" />
+</p>
 
 ---
 
