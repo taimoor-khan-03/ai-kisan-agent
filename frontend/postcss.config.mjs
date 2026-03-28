@@ -1,6 +1,8 @@
+/** PostCSS pipeline: Tailwind + Autoprefixer (Vercel-friendly). */
 const config = {
   plugins: {
-    "@tailwindcss/postcss": {},
+    tailwindcss: {},
+    autoprefixer: {},
   },
 };
 
