@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useId, useState } from "react";
 import type { DetectApiResponse, DiseasePrediction } from "@/types";
 import { DiseaseResultCard } from "@/components/DiseaseResultCard";
@@ -173,9 +174,12 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
 
         <div className="relative flex min-h-[220px] w-full flex-1 items-center justify-center overflow-hidden rounded-2xl border border-earth-200 bg-earth-50">
           {previewUrl ? (
-            <img
+            <Image
               src={previewUrl}
               alt="Selected crop preview"
+              width={1200}
+              height={1200}
+              unoptimized
               className="max-h-[320px] w-full object-contain p-3"
             />
           ) : (

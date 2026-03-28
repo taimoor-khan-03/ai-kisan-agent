@@ -1,0 +1,15 @@
+{
+  "name": "ai-kisan-agent",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "packageManager": "yarn@1.22.22",
+  "scripts": {
+    "dev": "yarn workspace frontend dev",
+    "build": "yarn workspace frontend build",
+    "start": "yarn workspace frontend start",
+    "lint": "yarn workspace frontend lint"
+  }
+}
