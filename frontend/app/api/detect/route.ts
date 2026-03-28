@@ -31,7 +31,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error:
-            "Server misconfiguration: set HUGGINGFACE_ACCESS_TOKEN (or HF_TOKEN) in .env.local — never commit secrets.",
+            "Server misconfiguration: set HUGGINGFACE_ACCESS_TOKEN (or HF_TOKEN) in .env.local â€” never commit secrets.",
         },
         { status: 500 },
       );
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
     /**
      * HF Inference Router rejects raw bytes without a media type ("No content type provided...").
      * The SDK omits `Content-Type` for binary bodies; `fetch` then sets it from `Blob.type`.
-     * Avoid Node `Buffer` as `data` (SDK error logging bug with Buffer — use Blob/ArrayBuffer only).
+     * Avoid Node `Buffer` as `data` (SDK error logging bug with Buffer â€” use Blob/ArrayBuffer only).
      */
     const mimeFromFile =
       "type" in entry && typeof entry.type === "string" && entry.type.length > 0
