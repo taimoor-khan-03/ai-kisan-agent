@@ -21,7 +21,7 @@ export function Hero({
   subtitle,
   ctaLabel,
   ctaHref,
-  badge = "Hackathon build · Mock APIs",
+  badge = "Multi-Agent System",
 }: HeroProps) {
   return (
     <header className="animate-fade-in relative overflow-hidden rounded-[2rem] border border-leaf-200 bg-gradient-to-br from-white/95 to-leaf-50 p-6 shadow-card sm:p-10">

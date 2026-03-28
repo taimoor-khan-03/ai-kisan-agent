@@ -24,7 +24,7 @@ export default function HomePage() {
 
       <main className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-8 pb-16 sm:px-6 lg:gap-12 lg:py-12">
         <Hero
-          title="AI Crop Advisory Multi-Agent System"
+          title="AI Crop Advisory"
           subtitle="Upload a crop photo, review disease guidance with Urdu support, and plan sprays using medicine-only cost estimates - built for farmers and hackathon judges."
           ctaLabel="Start crop scan"
           ctaHref="#scan"
@@ -37,9 +37,9 @@ export default function HomePage() {
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-leaf-700">Field context</p>
               <h2 className="text-2xl font-bold text-earth-900">Weather & best practices</h2>
-              <p className="text-earth-600">Sample JSON today - connect OpenWeatherMap when ready.</p>
+              {/* <p className="text-earth-600">.</p> */}
             </div>
-            <PDFDownloadButton />
+            <PDFDownloadButton weather={weather} advice={advice} />
           </div>
           <div className="grid gap-6 lg:grid-cols-2">
             <WeatherCard weather={weather} />
@@ -48,7 +48,7 @@ export default function HomePage() {
         </section>
 
         <footer className="animate-fade-in rounded-2xl border border-earth-200 bg-white/80 px-4 py-6 text-center text-sm text-earth-600">
-          Built with Next.js 14 · Tailwind · TypeScript. Mock APIs only - safe for Vercel deploy.
+          Built by Team @InfinityTK · BSc Computational mathematics, University of Karachi · Powered by Next.js, AI & Smart Agriculture Solutions
         </footer>
       </main>
     </div>

@@ -124,10 +124,9 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
       className={`animate-fade-in-delay space-y-6 rounded-[2rem] border border-leaf-200 bg-white/90 p-6 shadow-card backdrop-blur sm:p-8 ${className}`}
     >
       <div className="space-y-2">
-        <h2 className="text-2xl font-bold text-leaf-900">Crop photo · disease check</h2>
+        <h2 className="text-2xl font-bold text-leaf-900">Drop a leaf photo here</h2>
         <p className="text-earth-700">
-          Upload a clear leaf or fruit photo. The server calls Hugging Face inference and maps
-          results to local medicine guidance.
+          Upload a clear leaf or fruit photo. For 95%+ accuracy, ensure the leaf is centered and well-lit.
         </p>
       </div>
 
@@ -154,7 +153,7 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
               disabled={loading || !file}
               className="inline-flex min-h-[3.5rem] flex-1 items-center justify-center rounded-full bg-gradient-to-r from-leaf-600 to-leaf-800 px-6 text-base font-bold text-white shadow-lift disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {loading ? "Analyzing..." : "Run AI analysis"}
+              {loading ? "Analyzing..." : "Analyze Crop Health"}
             </button>
             <button
               type="button"

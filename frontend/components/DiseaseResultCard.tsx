@@ -42,13 +42,13 @@ export function DiseaseResultCard({ prediction }: DiseaseResultCardProps) {
     <article className="animate-fade-in space-y-4 rounded-2xl border border-leaf-200 bg-gradient-to-br from-white to-leaf-50 p-5 shadow-inner sm:p-6">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h3 className="text-xl font-bold text-leaf-900">Prediction</h3>
+          <h3 className="text-xl font-bold text-leaf-900">Diagnostic Report</h3>
           <p className="text-sm text-earth-600">
             Medicine-focused guidance (no crop market prices)
           </p>
         </div>
         <span className="inline-flex w-fit items-center rounded-full bg-leaf-600 px-4 py-2 text-sm font-bold text-white">
-          Confidence {formatPercent(prediction.confidence)}
+          Match Probability {formatPercent(prediction.confidence)}
         </span>
       </div>
 
