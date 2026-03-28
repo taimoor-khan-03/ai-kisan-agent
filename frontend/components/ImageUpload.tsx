@@ -28,6 +28,7 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
       setPreviewUrl(null);
       return;
     }
+
     const url = URL.createObjectURL(file);
     setPreviewUrl(url);
     return () => URL.revokeObjectURL(url);
@@ -38,20 +39,24 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
     setResult(null);
     setDebug(null);
     const next = event.target.files?.[0];
+
     if (!next) {
       setFile(null);
       return;
     }
+
     if (!next.type.startsWith("image/")) {
       setError("Please choose an image file (JPG, PNG, or WebP).");
       setFile(null);
       return;
     }
+
     if (next.size > 6 * 1024 * 1024) {
       setError("Image is too large. Please pick a file under 6 MB.");
       setFile(null);
       return;
     }
+
     setFile(next);
   }, []);
 
@@ -60,9 +65,11 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
       setError("Select a crop photo first.");
       return;
     }
+
     setLoading(true);
     setError(null);
     setDebug(null);
+
     try {
       const body = new FormData();
       body.append("image", file);
@@ -72,10 +79,13 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
         body,
       });
 
-      const data = (await res.json()) as DetectApiResponse & { error?: string; detail?: string };
+      const data = (await res.json()) as DetectApiResponse & {
+        error?: string;
+        detail?: string;
+      };
 
       if (!res.ok) {
-        const msg = [data.error, data.detail].filter(Boolean).join(" — ");
+        const msg = [data.error, data.detail].filter(Boolean).join(" - ");
         throw new Error(msg || `Request failed (${res.status})`);
       }
 
@@ -115,8 +125,8 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
       <div className="space-y-2">
         <h2 className="text-2xl font-bold text-leaf-900">Crop photo · disease check</h2>
         <p className="text-earth-700">
-          Upload a clear leaf or fruit photo. The server calls Hugging Face inference and maps results to local
-          medicine guidance.
+          Upload a clear leaf or fruit photo. The server calls Hugging Face inference and maps
+          results to local medicine guidance.
         </p>
       </div>
 
@@ -143,7 +153,7 @@ export function ImageUpload({ className = "" }: ImageUploadProps) {
               disabled={loading || !file}
               className="inline-flex min-h-[3.5rem] flex-1 items-center justify-center rounded-full bg-gradient-to-r from-leaf-600 to-leaf-800 px-6 text-base font-bold text-white shadow-lift disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {loading ? "Analyzing…" : "Run AI analysis"}
+              {loading ? "Analyzing..." : "Run AI analysis"}
             </button>
             <button
               type="button"

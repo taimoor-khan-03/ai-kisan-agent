@@ -33,7 +33,7 @@ export function OfflineBanner({ className = "" }: OfflineBannerProps) {
       role="status"
     >
       You are offline. This demo works with cached UI; connect to sync live weather later. PWA install can
-      be enabled post-hackathon.
+      be enabled.
     </div>
   );
 }
